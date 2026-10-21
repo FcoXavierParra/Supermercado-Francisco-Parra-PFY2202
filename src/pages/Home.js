@@ -1,28 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { STOCK_MINIMO } from "../data/productos";
 
-// Inventario inicial del supermercado (datos de ejemplo en memoria)
-const inventarioInicial = [
-  { id: 1, nombre: "Arroz Grado 1 1kg", categoria: "Abarrotes", stock: 120, precio: 1290 },
-  { id: 2, nombre: "Leche Entera 1L", categoria: "Lácteos", stock: 48, precio: 990 },
-  { id: 3, nombre: "Pan Molde Integral", categoria: "Panadería", stock: 15, precio: 2190 },
-  { id: 4, nombre: "Manzana Fuji kg", categoria: "Frutas y Verduras", stock: 6, precio: 1590 },
-  { id: 5, nombre: "Detergente 3L", categoria: "Limpieza", stock: 22, precio: 6490 },
-  { id: 6, nombre: "Pollo Entero kg", categoria: "Carnes", stock: 9, precio: 3290 },
-];
-
-const STOCK_MINIMO = 10;
-
-function Home() {
-  const [inventario, setInventario] = useState(inventarioInicial);
+// El inventario y la función para ajustarlo llegan como props desde App
+function Home({ inventario, ajustarStock }) {
   const [filtro, setFiltro] = useState("");
-
-  const ajustarStock = (id, delta) => {
-    setInventario((prev) =>
-      prev.map((p) =>
-        p.id === id ? { ...p, stock: Math.max(0, p.stock + delta) } : p
-      )
-    );
-  };
 
   const productosFiltrados = inventario.filter(
     (p) =>
@@ -73,7 +55,9 @@ function Home() {
         <tbody>
           {productosFiltrados.map((p) => (
             <tr key={p.id} className={p.stock < STOCK_MINIMO ? "fila--alerta" : ""}>
-              <td>{p.nombre}</td>
+              <td>
+                <Link to={`/producto/${p.id}`} className="enlace-producto">{p.nombre}</Link>
+              </td>
               <td>{p.categoria}</td>
               <td>${p.precio.toLocaleString("es-CL")}</td>
               <td>
