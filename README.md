@@ -11,6 +11,7 @@ Sitio web SPA desarrollado con React y React Router para la gestión de inventar
 | Ruta | Página | Descripción |
 |---|---|---|
 | `/` | Inicio | Inventario: resumen de productos, unidades y bajo stock; buscador por nombre o categoría; ajuste de stock con botones −/+; alerta "¡Reponer!" bajo 10 unidades. |
+| `/producto/:id` | Detalle de producto | Ruta dinámica: muestra el producto según el `id` de la URL (`useParams`), permite ajustar su stock y maneja códigos inexistentes. |
 | `/quienes-somos` | Quiénes somos | Historia, misión, valores y equipo del supermercado. |
 | `/contactanos` | Contáctanos | Datos de contacto y formulario; al enviarlo redirige al inicio con `useNavigate`. |
 | `*` | 404 | Página para rutas no definidas, con enlace de regreso al inicio. |
@@ -20,6 +21,8 @@ Sitio web SPA desarrollado con React y React Router para la gestión de inventar
 - `BrowserRouter` envuelve la aplicación en `src/index.js`.
 - `Routes` y `Route` definen las rutas en `src/App.js`.
 - `NavLink` en el menú inferior (`src/components/BottomNav.js`) resalta la pestaña activa.
+- Ruta dinámica `/producto/:id` leída con `useParams` en `src/pages/DetalleProducto.js`; desde el inventario cada producto es un `Link` a su detalle.
+- El estado del inventario vive en `App.js` y se pasa por props, así no se pierde al cambiar de página.
 - `useNavigate` realiza la redirección programática tras enviar el formulario de contacto.
 - `Link` en la página 404 para volver al inicio.
 
@@ -29,10 +32,12 @@ Sitio web SPA desarrollado con React y React Router para la gestión de inventar
 public/index.html
 src/
   index.js                 BrowserRouter + montaje de la app
-  App.js                   Definición de rutas
+  App.js                   Definición de rutas y estado del inventario
+  data/productos.js        Datos iniciales del inventario
   App.css                  Estilos
   components/BottomNav.js  Menú inferior de navegación
   pages/Home.js            Inventario (página principal)
+  pages/DetalleProducto.js Detalle de producto (ruta dinámica)
   pages/QuienesSomos.js
   pages/Contactanos.js
   pages/NoEncontrado.js
