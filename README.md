@@ -40,7 +40,7 @@ src/
 
 ## Ejecución local
 
-Requisitos: Node.js 18 o superior.
+Requisitos: Node.js 24 (versión usada en desarrollo y en el deploy).
 
 ```bash
 git clone https://github.com/FcoXavierParra/Supermercado-Francisco-Parra-PFY2202.git
