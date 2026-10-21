@@ -51,6 +51,12 @@ npm start
 
 La aplicación queda disponible en http://localhost:3000.
 
+## Sitio publicado
+
+https://fcoxavierparra.github.io/Supermercado-Francisco-Parra-PFY2202/
+
+Se publica automáticamente en GitHub Pages con cada push a `main` (`.github/workflows/deploy.yml`).
+
 ## Tecnologías
 
 HTML, CSS, JavaScript, React 18, React Router DOM 6, Create React App (react-scripts 5).

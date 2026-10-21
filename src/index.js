@@ -8,7 +8,8 @@ import "./App.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    {/* basename permite publicar en un subdirectorio (GitHub Pages); en local queda en "/" */}
+    <BrowserRouter basename={process.env.PUBLIC_URL || "/"}>
       <App />
     </BrowserRouter>
   </React.StrictMode>
